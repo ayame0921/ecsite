@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'users',
     'app',
+    'imagekit',
+    'social_django',
 ]
 
 NUMBER_GROUPING = 3
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'ecsite.urls'
@@ -70,10 +73,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'ecsite.wsgi.application'
 
@@ -139,3 +151,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 print("MEDIA_ROOT", MEDIA_ROOT)
 
 SESSION_SAVE_EVERY_REQUEST = True
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '834222054466-1co2ioea41nfodq3e7foppehrm5h91cl.apps.googleusercontent.com'  # クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'iWMZjG3vAhtyV0Q2ur_55BpP' # クライアント シークレット

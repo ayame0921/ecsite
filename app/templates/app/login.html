@@ -1,11 +1,8 @@
-{% extends 'app/base.html' %}
-
-{% block content %}
+{% extends 'app/base.html' %} {% block content %}
 
 <form class="form-signin" method="post">
-    {% csrf_token %}
-    {% if form.errors %}
-        <p>ユーザー名かパスワードが間違っています。</p>
+    {% csrf_token %} {% if form.errors %}
+    <p>ユーザー名かパスワードが間違っています。</p>
     {% endif %}
     <h2>ログイン</h2>
     <label>メールアドレス</label>
@@ -14,6 +11,11 @@
     <label>パスワード</label>
     <input type="password" name="password">
     <br>
+    <h2>ソーシャルサービスを選択してログイン</h2>
+    <ul>
+        <li><a href="{% url 'social:begin' 'google-oauth2' %}">Googleでログイン</a></li>
+    </ul>
+
     <input type="submit" value="ログイン">
 </form>
 

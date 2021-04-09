@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from app.models import Product
 
+
 class UserManager(BaseUserManager):
 
     use_in_migrations = True
@@ -56,5 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "user"
         verbose_name_plural = "users"
+
+
 
 # Create your models here.
