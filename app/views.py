@@ -10,7 +10,8 @@ import json
 import requests
 from .models import Sale
 from .forms import PurchaseForm
-
+from django.http import HttpResponse
+from django.utils.translation import gettext as _
 
 # Create your views here.
 def signup(request):
@@ -129,7 +130,7 @@ def cart(request):
         if 'buy_product' in request.POST:
             # 住所が入力済みか確認する
             if not purchase_form.cleaned_data['address']:
-                messages.warning(request, '住所の入力は必須です')
+                messages.warning(request, _('住所の入力は必須です'))
                 return redirect('app:cart')
             #　カートが空じゃないか確認
             if not bool(cart):

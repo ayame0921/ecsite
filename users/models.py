@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from app.models import Product
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
